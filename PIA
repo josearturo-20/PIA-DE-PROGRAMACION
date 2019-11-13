@@ -9,8 +9,6 @@ class Contacto:
     self.registro=registro
     self.UIValido=UIValido
 
-# Almacena objetos en una lista
-
 from definirclase import Contacto
 
 from operator import attrgetter
