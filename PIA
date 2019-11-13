@@ -1,0 +1,127 @@
+#PIA DE PROGRMACION AVANZADA
+import datetime
+class Contacto:
+
+  def __init__(self, telefono, nombre,correo,registro=datetime.datetime.now(),UIValido=False):
+    self.telefono=telefono
+    self.nombre=nombre
+    self.correo=correo
+    self.registro=registro
+    self.UIValido=UIValido
+
+# Almacena objetos en una lista
+
+from definirclase import Contacto
+
+from operator import attrgetter
+
+def CuantosElementosHay():
+    txt = "Los elementos son {}"
+    print(txt.format(len(Contactos)))
+
+def BuscarTelefono(telabuscar):
+    coincidencia=False
+    for contacto in Contactos:
+        if (contacto.telefono==telabuscar):
+            coincidencia=True
+            break
+    return coincidencia
+
+Contactos = []
+CuantosElementosHay()
+
+Contactos.append(Contacto(8127005895,"Arturo Garza","jaggaheta@hotmail.com"))
+CuantosElementosHay()
+
+Contactos.append(Contacto(8182109283,"Lupita Gaheta","ma.guaudalupe@hotmail.com"))
+Contactos.append(Contacto(8113500313,"Alexis Garza","AlexGg@hotmail.com"))
+Contactos.append(Contacto(8116388223,"Jose Garza","AGTreviño@gmail.com"))
+CuantosElementosHay()
+
+for contacto in Contactos:
+    print("------------------------------------------")
+    print(contacto.telefono)
+    print(contacto.nombre)
+    print(contacto.correo)
+    print(contacto.registro)
+    print(contacto.UIValido)
+
+Contactos.sort(key=attrgetter("telefono"),reverse=False)
+
+print("Ordenado")
+for contacto in Contactos:
+    print("------------------------------------------")
+    print(contacto.telefono)
+    print(contacto.nombre)
+    print(contacto.correo)
+    print(contacto.registro)
+    print(contacto.UIValido)
+
+print(BuscarTelefono(8182109283))
+print(BuscarTelefono(8113500313))
+
+from definirclase import Contacto
+
+def MostrarContenido(objeto):
+ print(objeto.telefono)
+ print(objeto.nombre)
+ print(objeto.correo)
+ print(objeto.registro)
+
+primercontacto=Contacto(8127005895,"Arturo Garza","jaggaheta@hotmail.com")
+MostrarContenido(primercontacto)
+
+from typing import List
+import json
+
+
+class Persona:
+
+    nombre=""
+    apellidos=""
+
+    def __init__(self, nombre, apellidos):
+
+        self.nombre=nombre
+        self.apellidos=apellidos
+
+    def muestraInfo(self):
+        print("Clase Base")
+        print(self.nombre)
+        print(self.apellidos)
+
+class Alumno(Persona):
+
+    Ciclo=0
+
+    def __init__(self, nombre, apellidos, Ciclo=2015):
+        super().__init__(nombre, apellidos)
+        self.Ciclo=Ciclo
+    def muestraInfo(self):
+        print("Clase Derivada")
+        print(self.nombre)
+        print(self.apellidos)
+        print(self.Ciclo)
+    def derivadoInfo(self):
+        print(self.Ciclo)
+
+print("----------------------------------------------")
+unaPersona=Persona("Arturo","Garza")
+unaPersona.muestraInfo()
+print("----------------------------------------------")
+Alumno=Alumno("Lupita","Gaheta")
+Alumno.aniograduacion=2019
+Alumno.muestraInfo()
+print("----------------------------------------------")
+Alumno.derivadoInfo()
+
+Alumno=[]
+Alumno.append(Alumno("CARO", "APARICIO",2001))
+Alumno.append(Alumno("BETTY", "MARTINEZ",1023))
+Alumno.append(Alumno("DAMARIS", "APAMA",2020))
+
+
+print(Alumno)
+
+json_data = json.dumps(Alumno, default=lambda o: o.__dict__, indent=4)
+print(json_data)
